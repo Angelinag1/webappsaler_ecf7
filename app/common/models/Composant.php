@@ -15,7 +15,7 @@ class Composant extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Column(column="id_module", type="integer", nullable=true)
+     * @Column(column="id_module", type="integer", nullable=true)en
      */
     protected $id_module;
 
