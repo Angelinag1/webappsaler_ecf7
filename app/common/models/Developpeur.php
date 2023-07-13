@@ -1,6 +1,6 @@
 <?php
 
-namespace Webappsaler\Common\Models;
+namespace Webappsaler\Models;
 use Phalcon\Validation;
 
 class Developpeur extends \Phalcon\Mvc\Model
