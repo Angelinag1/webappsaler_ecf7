@@ -1,5 +1,6 @@
 <?php
 
+namespace Webappsaler\Models;
 class Equipe extends \Phalcon\Mvc\Model
 {
 
@@ -73,7 +74,7 @@ class Equipe extends \Phalcon\Mvc\Model
         $this->setSchema("angy_db");
         $this->setSource("equipe");
         $this->hasMany('id', 'CompositionEquipe', 'id_equipe', ['alias' => 'CompositionEquipe']);
-        $this->belongsTo('id_chefdeprojet', '\Chefdeprojet', 'id', ['alias' => 'Chefdeprojet']);
+        $this->belongsTo('id_chefdeprojet', '\Webappsaler\Common\Models\Chefdeprojet', 'id', ['alias' => 'Chefdeprojet']);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+namespace Webappsaler\Models;
 class Collaborateur extends \Phalcon\Mvc\Model
 {
 
@@ -26,6 +27,9 @@ class Collaborateur extends \Phalcon\Mvc\Model
      */
     protected $niveauCompetence;
 
+    const _NIVEAU_1_STAGIAIRE_ = 1;
+    const _NIVEAU_2_JUNIOR_ = 2;
+    const _NIVEAU_3_SENIOR_ = 3;
     /**
      *
      * @var integer
@@ -39,6 +43,8 @@ class Collaborateur extends \Phalcon\Mvc\Model
      * @param integer $id
      * @return $this
      */
+
+
     public function setId($id)
     {
         $this->id = $id;
@@ -112,7 +118,26 @@ class Collaborateur extends \Phalcon\Mvc\Model
      */
     public function getNiveauCompetence()
     {
-        return $this->niveauCompetence;
+        return intval($this->niveauCompetence);
+    }
+
+    /**
+     * @return string
+     */
+
+    /* cette methode sert à traduire les niveaux des collaborateurs*/
+    public function translateNiveau( ) : string
+    {
+        switch ($this->getNiveauCompetence()){
+            case self::_NIVEAU_1_STAGIAIRE_:
+
+                return 'STAGIAIRE';
+            case self::_NIVEAU_2_JUNIOR_ :
+                return 'JUNIOR';
+            case self::_NIVEAU_3_SENIOR_:
+                return 'SENIOR';
+            default : return 'Pas de niveau'  ;
+        }
     }
 
     /**
@@ -157,5 +182,9 @@ class Collaborateur extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+
+
+
+
 
 }

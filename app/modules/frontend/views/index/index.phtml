@@ -5,18 +5,9 @@
 <p>You're now flying with Phalcon. Great things are about to happen!</p>
 
 <p>This page is located at <code>views/index/index.phtml</code></p>
-<?php if (!empty($collaborateurs)) {
-    foreach ($collaborateurs as $collaborateur) { ?>
-        <tr>
-            <td><?php echo $collaborateur->id; ?></td>
-            <td><?php echo $collaborateur->nom; ?></td>
-            <td><?php echo $collaborateur->niveau_competence; ?></td>
-            <td><?php echo $collaborateur->prime_embauche; ?></td>
-        </tr>
-    <?php }
-} else { ?>
-    <tr>
-        <td colspan="3">Aucun collabo_ trouvé.</td>
-    </tr>
-<?php } ?>
 
+<a href="test.phtml" target="_blank">Lien</a>
+
+<?php
+
+echo "<h1>Hello!</h1>";

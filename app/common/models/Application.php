@@ -1,5 +1,6 @@
 <?php
 
+namespace Webappsaler\Models;
 class Application extends \Phalcon\Mvc\Model
 {
 
@@ -50,7 +51,7 @@ class Application extends \Phalcon\Mvc\Model
      *
      * @return string
      */
-    public function getNom()
+    public function getNom(): string
     {
         return $this->nom;
     }

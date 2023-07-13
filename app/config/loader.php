@@ -8,7 +8,7 @@ $loader = new Loader();
  * Register Namespaces
  */
 $loader->registerNamespaces([
-    'Webappsaler\Models' => APP_PATH . '/modules/frontend/models/',
+    'Webappsaler\Models' => APP_PATH . '/common/models/',
     'Webappsaler'        => APP_PATH . '/common/library/',
 ]);
 

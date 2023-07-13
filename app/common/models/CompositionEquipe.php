@@ -1,5 +1,6 @@
 <?php
 
+namespace Webappsaler\Models;
 class CompositionEquipe extends \Phalcon\Mvc\Model
 {
 
@@ -102,8 +103,8 @@ class CompositionEquipe extends \Phalcon\Mvc\Model
     {
         $this->setSchema("angy_db");
         $this->setSource("composition_equipe");
-        $this->belongsTo('id_developpeur', '\Developpeur', 'id', ['alias' => 'Developpeur']);
-        $this->belongsTo('id_equipe', '\Equipe', 'id', ['alias' => 'Equipe']);
+        $this->belongsTo('id_developpeur', '\Webappsaler\Common\Models\Developpeur', 'id', ['alias' => 'Developpeur']);
+        $this->belongsTo('id_equipe', '\Webappsaler\Common\Models\Equipe', 'id', ['alias' => 'Equipe']);
     }
 
     /**

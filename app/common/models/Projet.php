@@ -1,5 +1,6 @@
 <?php
 
+namespace Webappsaler\Models;
 class Projet extends \Phalcon\Mvc\Model
 {
 
@@ -312,12 +313,12 @@ class Projet extends \Phalcon\Mvc\Model
     {
         $this->setSchema("angy_db");
         $this->setSource("projet");
-        $this->belongsTo('id_application', '\Application', 'id', ['alias' => 'Application']);
-        $this->belongsTo('id_chefdeprojet', '\Chefdeprojet', 'id', ['alias' => 'Chefdeprojet']);
-        $this->belongsTo('id_client', '\Client', 'id', ['alias' => 'Client']);
-        $this->belongsTo('id_application', '\Composant', 'id', ['alias' => 'Composant']);
-        $this->belongsTo('id_developpeur', '\Developpeur', 'id', ['alias' => 'Developpeur']);
-        $this->belongsTo('id_module', '\Module', 'id', ['alias' => 'Module']);
+        $this->belongsTo('id_application', '\Webappsaler\Common\Models\Application', 'id', ['alias' => 'Application']);
+        $this->belongsTo('id_chefdeprojet', '\Webappsaler\Common\Models\Chefdeprojet', 'id', ['alias' => 'Chefdeprojet']);
+        $this->belongsTo('id_client', '\Webappsaler\Common\Models\Client', 'id', ['alias' => 'Client']);
+        $this->belongsTo('id_application', '\Webappsaler\Common\Models\Composant', 'id', ['alias' => 'Composant']);
+        $this->belongsTo('id_developpeur', '\Webappsaler\Common\Models\Developpeur', 'id', ['alias' => 'Developpeur']);
+        $this->belongsTo('id_module', '\Webappsaler\Common\Models\Module', 'id', ['alias' => 'Module']);
     }
 
     /**

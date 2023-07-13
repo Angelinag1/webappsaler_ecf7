@@ -1,0 +1,27 @@
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+    <tr>
+        <th>#</th>
+        <th>Nom Prénom</th>
+        <th>Niveau</th>
+        <th>Prime Embauche</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php if (!empty($collaborateurs)) {
+        foreach ($collaborateurs as $collaborateur) { ?>
+            <tr>
+                <td><?php echo $collaborateur->id; ?></td>
+                <td><?php echo $collaborateur->nom; ?></td>
+                <td><?php echo $collaborateur->translateNiveau($niveauCompetence); ?></td>
+                <td><?php echo $collaborateur->prime_embauche; ?></td>
+            </tr>
+        <?php }
+    } else { ?>
+        <tr>
+            <td colspan="4">Aucun collabo_ trouvé.</td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+
