@@ -1,6 +1,6 @@
 <?php
 
-namespace Webappsaler\Models;
+namespace Webappsaler\Common\Models;
 use Phalcon\Validation;
 
 class Developpeur extends \Phalcon\Mvc\Model
@@ -132,7 +132,7 @@ class Developpeur extends \Phalcon\Mvc\Model
      */
     public function getCompetence()
     {
-        return intval(this->competence);
+        return intval($this->competence);
     }
 
     /**
