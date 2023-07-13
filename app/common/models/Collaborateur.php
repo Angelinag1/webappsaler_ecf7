@@ -1,6 +1,8 @@
 <?php
 
 namespace Webappsaler\Models;
+use Phalcon\Validation;
+
 class Collaborateur extends \Phalcon\Mvc\Model
 {
 
@@ -129,15 +131,36 @@ class Collaborateur extends \Phalcon\Mvc\Model
     public function translateNiveau( ) : string
     {
         switch ($this->getNiveauCompetence()){
-            case self::_NIVEAU_1_STAGIAIRE_:
-
-                return 'STAGIAIRE';
-            case self::_NIVEAU_2_JUNIOR_ :
-                return 'JUNIOR';
-            case self::_NIVEAU_3_SENIOR_:
-                return 'SENIOR';
+            case self::_NIVEAU_1_STAGIAIRE_:return 'STAGIAIRE';
+            case self::_NIVEAU_2_JUNIOR_ :return 'JUNIOR';
+            case self::_NIVEAU_3_SENIOR_:return 'SENIOR';
             default : return 'Pas de niveau'  ;
         }
+    }
+
+    /**
+     * @return bool
+     */
+
+    /* Permet de verifier la valeur dans niveau-competence */
+    public function validation() : bool
+    {
+        $validator = new Validation();
+        $validator->add(
+            'niveau-competence',
+            new Validation\Validator\InclusionIn(
+            [
+                'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
+                'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
+                'template' => [
+                    self::_NIVEAU_1_STAGIAIRE_,
+                    self::_NIVEAU_2_JUNIOR_,
+                    self::_NIVEAU_3_SENIOR_,
+                ],
+            ]
+            )
+        );
+        return $this->validate($validator);
     }
 
     /**
