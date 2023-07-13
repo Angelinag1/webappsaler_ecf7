@@ -15,16 +15,16 @@ class Collaborateur extends \Phalcon\Mvc\Model
     /**
      *
      * @var string
-     * @Column(column="nom_prenom", type="string", length=150, nullable=false)
+     * @Column(column="nom", type="string", length=150, nullable=false)
      */
-    protected $nom_prenom;
+    protected $nom;
 
     /**
      *
      * @var string
-     * @Column(column="niveau_competence", type="string", length='1','2','3', nullable=false)
+     * @Column(column="niveau-competence", type="string", length='1','2','3', nullable=false)
      */
-    protected $niveau_competence;
+    protected $niveauCompetence;
 
     /**
      *
@@ -47,27 +47,27 @@ class Collaborateur extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Method to set the value of field nom_prenom
+     * Method to set the value of field nom
      *
-     * @param string $nom_prenom
+     * @param string $nom
      * @return $this
      */
-    public function setNomPrenom($nom_prenom)
+    public function setNom($nom)
     {
-        $this->nom_prenom = $nom_prenom;
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Method to set the value of field niveau_competence
+     * Method to set the value of field niveau-competence
      *
-     * @param string $niveau_competence
+     * @param string $niveauCompetence
      * @return $this
      */
-    public function setNiveauCompetence($niveau_competence)
+    public function setNiveauCompetence($niveauCompetence)
     {
-        $this->niveau_competence = $niveau_competence;
+        $this->niveauCompetence = $niveauCompetence;
 
         return $this;
     }
@@ -96,23 +96,23 @@ class Collaborateur extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns the value of field nom_prenom
+     * Returns the value of field nom
      *
      * @return string
      */
-    public function getNomPrenom()
+    public function getNom()
     {
-        return $this->nom_prenom;
+        return $this->nom;
     }
 
     /**
-     * Returns the value of field niveau_competence
+     * Returns the value of field niveauCompetence
      *
      * @return string
      */
     public function getNiveauCompetence()
     {
-        return $this->niveau_competence;
+        return $this->niveauCompetence;
     }
 
     /**
