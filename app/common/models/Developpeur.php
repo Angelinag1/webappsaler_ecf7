@@ -163,8 +163,8 @@ class Developpeur extends \Phalcon\Mvc\Model
             new Validation\Validator\InclusionIn(
                 [
                     'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
-                    'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
-                    'template' => [
+                    'message' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
+                    'domain' => [
                         self::_COMPETENCE_1_FRONTEND_,
                         self::_COMPETENCE_2_BACKEND_,
                         self::_COMPETENCE_3_DATABASE_,
