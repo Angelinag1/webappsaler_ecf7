@@ -86,49 +86,11 @@ class Developpeur extends \Phalcon\Mvc\Model
      */
     public function setCompetence($competence)
     {
+        $this->competence = $competence;
 
-
-        return intval($this->competence = $competence);
-    }
-    /**
-     * @return string
-     */
-
-    /* cette methode sert à traduire les niveaux des collaborateurs*/
-    public function translateCompetence( ) : string
-    {
-        switch ($this->getNiveauCompetence()){
-            case self::_COMPETENCE_1_FRONTEND_:return 'FRONTEND';
-            case self::_COMPETENCE_2_BACKEND_ :return 'BACKEND';
-            case self::_COMPETENCE_3_DATABASE_:return 'DATABASE';
-            default : return 'Pas de niveau'  ;
-        }
+        return $this;
     }
 
-    /**
-     * @return bool
-     */
-
-    /* Permet de verifier la valeur dans -competence */
-    public function validation() : bool
-    {
-        $validator = new Validation();
-        $validator->add(
-            'competence',
-            new Validation\Validator\InclusionIn(
-                [
-                    'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
-                    'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
-                    'template' => [
-                        self::_COMPETENCE_1_FRONTEND_,
-                        self::_COMPETENCE_2_BACKEND_,
-                        self::_COMPETENCE_3_DATABASE_,
-                    ],
-                ]
-            )
-        );
-        return $this->validate($validator);
-    }
 
 
 
@@ -170,7 +132,47 @@ class Developpeur extends \Phalcon\Mvc\Model
      */
     public function getCompetence()
     {
-        return $this->competence;
+        return intval(this->competence);
+    }
+
+    /**
+     * @return string
+     */
+
+    /* cette methode sert à traduire les niveaux des collaborateurs*/
+    public function translateCompetence( ) : string
+    {
+        switch ($this->getCompetence()){
+            case self::_COMPETENCE_1_FRONTEND_:return 'FRONTEND';
+            case self::_COMPETENCE_2_BACKEND_ :return 'BACKEND';
+            case self::_COMPETENCE_3_DATABASE_:return 'DATABASE';
+            default : return 'Pas de niveau'  ;
+        }
+    }
+
+    /**
+     * @return bool
+     */
+
+    /* Permet de verifier la valeur dans -competence */
+    public function validation() : bool
+    {
+        $validator = new Validation();
+        $validator->add(
+            'competence',
+            new Validation\Validator\InclusionIn(
+                [
+                    'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
+                    'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
+                    'template' => [
+                        self::_COMPETENCE_1_FRONTEND_,
+                        self::_COMPETENCE_2_BACKEND_,
+                        self::_COMPETENCE_3_DATABASE_,
+                    ],
+                ]
+            )
+        );
+        return $this->validate($validator);
     }
 
     /**

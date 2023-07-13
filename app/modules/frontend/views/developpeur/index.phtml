@@ -1,0 +1,27 @@
+<table class="table table-bordered table-hover">
+    <thead class="thead-light">
+    <tr>
+        <th>#</th>
+        <th>Nom Prénom</th>
+        <th>Niveau</th>
+        <th>Prime Embauche</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php if (!empty($developpeurs)) {
+        foreach ($developpeurs as $developpeur) { ?>
+            <tr>
+                <td><?php echo $developpeur->id; ?></td>
+                <td><?php echo $developpeur->id_collaborateur; ?></td>
+                <td><?php echo $developpeur->translateCompetence(); ?></td>
+                <td><?php echo $developpeur->indice_production; ?></td>
+            </tr>
+        <?php }
+    } else { ?>
+        <tr>
+            <td colspan="4">Aucun developpeur trouvé.</td>
+        </tr>
+    <?php } ?>
+    </tbody>
+</table>
+
