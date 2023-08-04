@@ -1,27 +1,8 @@
-<table class="table table-bordered table-hover">
-    <thead class="thead-light">
-    <tr>
-        <th>#</th>
-        <th>Nom Prénom</th>
-        <th>Niveau</th>
-        <th>Prime Embauche</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php if (!empty($collaborateurs)) {
-        foreach ($collaborateurs as $collaborateur) { ?>
-            <tr>
-                <td><?php echo $collaborateur->id; ?></td>
-                <td><?php echo $collaborateur->nom; ?></td>
-                <td><?php echo $collaborateur->translateNiveau(); ?></td>
-                <td><?php echo $collaborateur->prime_embauche; ?></td>
-            </tr>
-        <?php }
-    } else { ?>
-        <tr>
-            <td colspan="4">Aucun collaborateur trouvé.</td>
-        </tr>
-    <?php } ?>
-    </tbody>
-</table>
-
+<div class="container mt-4">
+    <h1>Liste des Collaborateurs</h1>
+    <!-- Afficher la variable contenant le code HTML de la table -->
+    <?php /** @var TYPE_NAME $tabCollab */
+    echo $tabCollab; ?>
+</div>
+<!-- Ajoutez ici les liens vers les fichiers JavaScript de Bootstrap -->
+<script src="https://cedn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

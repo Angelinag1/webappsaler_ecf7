@@ -105,7 +105,7 @@ class Module extends \Phalcon\Mvc\Model
         $this->setSource("module");
         $this->hasMany('id', 'Composant', 'id_module', ['alias' => 'Composant']);
         $this->hasMany('id', 'Projet', 'id_module', ['alias' => 'Projet']);
-        $this->belongsTo('id_application', '\Webappsaler\Common\Models\Application', 'id', ['alias' => 'Application']);
+        $this->belongsTo('id_application', 'Webappsaler\Models\Application', 'id', ['alias' => 'Application']);
     }
 
     /**

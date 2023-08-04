@@ -1,6 +1,8 @@
 <?php
 
 namespace Webappsaler\Models;
+use Phalcon\Validation;
+
 class Projet extends \Phalcon\Mvc\Model
 {
 
@@ -61,6 +63,10 @@ class Projet extends \Phalcon\Mvc\Model
      * @Column(column="type", type="string", length='1','2','3', nullable=false)
      */
     protected $type;
+    const _TYPE_1_APPLICATION_ = 1;
+    const _TYPE_2_MODULE_ = 2;
+    const _TYPE_3_COMPOSANT_ = 3;
+
 
     /**
      *
@@ -75,6 +81,12 @@ class Projet extends \Phalcon\Mvc\Model
      * @Column(column="statut", type="string", length='0','1','2','3','4', nullable=false)
      */
     protected $statut;
+
+    const _STATUT_0_DISPONIBLE_ = 0;
+    const _STATUT_1_ENCOURS_ = 1;
+    const _STATUT_2_PROGRESS_ = 2;
+    const _STATUT_3_RECETTE_ = 3;
+    const _STATUT_4_TERMINE_ = 4;
 
     /**
      * Method to set the value of field id
@@ -285,6 +297,22 @@ class Projet extends \Phalcon\Mvc\Model
     {
         return $this->type;
     }
+    public function translateType( ) : string
+    {
+        switch ($this->getType()){
+            case self::_TYPE_1_APPLICATION_:return 'APPLICATION';
+            case self::_TYPE_2_MODULE_ :return 'MODULE';
+            case self::_TYPE_3_COMPOSANT_:return 'COMPOSANT';
+            default : return 'Pas de Type'  ;
+        }
+    }
+
+    /**
+     * @return bool
+     */
+
+    /* Permet de verifier la valeur dans -competence */
+
 
     /**
      * Returns the value of field prix
@@ -306,6 +334,39 @@ class Projet extends \Phalcon\Mvc\Model
         return $this->statut;
     }
 
+    public function translateStatut( ) : string
+    {
+        switch ($this->getStatut()){
+            case self::_STATUT_0_DISPONIBLE_:return 'DISPONIBLE';
+            case self:: _STATUT_1_ENCOURS_ :return 'EN COURS';
+            case self::_STATUT_2_PROGRESS_ :return 'PROGRESS';
+            case self::_STATUT_3_RECETTE_ :return 'RECETTE';
+            case self::_STATUT_4_TERMINE_:return 'TERMINE';
+            default : return 'Pas de Statut'  ;
+        }
+    }
+    public function validation() : bool
+    {
+        $validator = new Validation();
+        $validator->add(
+            'competence',
+            new Validation\Validator\InclusionIn(
+                [
+                    'template' => 'Le champ :field doit avoir une valeur comprise entre 0 et 4',
+                    'message' => 'Le champ :field doit avoir une valeur comprise entre 0 et 4',
+                    'domain' => [
+                        self::_STATUT_0_DISPONIBLE_,
+                        self::_STATUT_1_ENCOURS_,
+                        self::_STATUT_2_PROGRESS_,
+                        self::_STATUT_3_RECETTE_,
+                        self::_STATUT_4_TERMINE_,
+                    ],
+                ]
+            )
+        );
+        return $this->validate($validator);
+    }
+
     /**
      * Initialize method for model.
      */
@@ -313,12 +374,12 @@ class Projet extends \Phalcon\Mvc\Model
     {
         $this->setSchema("angy_db");
         $this->setSource("projet");
-        $this->belongsTo('id_application', '\Webappsaler\Common\Models\Application', 'id', ['alias' => 'Application']);
-        $this->belongsTo('id_chefdeprojet', '\Webappsaler\Common\Models\Chefdeprojet', 'id', ['alias' => 'Chefdeprojet']);
-        $this->belongsTo('id_client', '\Webappsaler\Common\Models\Client', 'id', ['alias' => 'Client']);
-        $this->belongsTo('id_application', '\Webappsaler\Common\Models\Composant', 'id', ['alias' => 'Composant']);
-        $this->belongsTo('id_developpeur', '\Webappsaler\Common\Models\Developpeur', 'id', ['alias' => 'Developpeur']);
-        $this->belongsTo('id_module', '\Webappsaler\Common\Models\Module', 'id', ['alias' => 'Module']);
+        $this->belongsTo('id_application', 'Webappsaler\Models\Application', 'id', ['alias' => 'Application']);
+        $this->belongsTo('id_chefdeprojet', 'Webappsaler\Models\Chefdeprojet', 'id', ['alias' => 'Chefdeprojet']);
+        $this->belongsTo('id_client', 'Webappsaler\Models\Client', 'id', ['alias' => 'Client']);
+        $this->belongsTo('id_application', '\Webappsaler\Models\Composant', 'id', ['alias' => 'Composant']);
+        $this->belongsTo('id_developpeur', 'Webappsaler\Models\Developpeur', 'id', ['alias' => 'Developpeur']);
+        $this->belongsTo('id_module', 'Webappsaler\Models\Module', 'id', ['alias' => 'Module']);
     }
 
     /**

@@ -21,6 +21,12 @@ class Equipe extends \Phalcon\Mvc\Model
     protected $id_chefdeprojet;
 
     /**
+     * @var varchar(100)
+     * @Column(column="nom_equipe", type="varchar", nullable=false)
+     */
+    protected $nomEquipe;
+
+    /**
      * Method to set the value of field id
      *
      * @param integer $id
@@ -74,7 +80,7 @@ class Equipe extends \Phalcon\Mvc\Model
         $this->setSchema("angy_db");
         $this->setSource("equipe");
         $this->hasMany('id', 'CompositionEquipe', 'id_equipe', ['alias' => 'CompositionEquipe']);
-        $this->belongsTo('id_chefdeprojet', '\Webappsaler\Common\Models\Chefdeprojet', 'id', ['alias' => 'Chefdeprojet']);
+        $this->belongsTo('id_chefdeprojet', 'Webappsaler\Models\Chefdeprojet', 'id', ['alias' => 'Chefdeprojet']);
     }
 
     /**
@@ -97,6 +103,24 @@ class Equipe extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null): ?\Phalcon\Mvc\ModelInterface
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * @param mixed $nomEquipe
+     * @return Equipe
+     */
+    public function setNomEquipe($nomEquipe)
+    {
+        $this->nomEquipe = $nomEquipe;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNomEquipe()
+    {
+        return $this->nomEquipe;
     }
 
 }

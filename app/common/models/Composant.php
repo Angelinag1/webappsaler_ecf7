@@ -1,6 +1,8 @@
 <?php
 
 namespace Webappsaler\Models;
+use Phalcon\Validation;
+
 class Composant extends \Phalcon\Mvc\Model
 {
 
@@ -26,7 +28,9 @@ class Composant extends \Phalcon\Mvc\Model
      * @Column(column="type", type="string", length='1','2','3', nullable=false)
      */
     protected $type;
-
+    const _TYPE_1_FRONTEND_ = 1;
+    const _TYPE_2_BACKEND_ = 2;
+    const _TYPE_3_DATABASE_ = 3;
     /**
      *
      * @var integer
@@ -155,7 +159,45 @@ class Composant extends \Phalcon\Mvc\Model
     {
         return $this->type;
     }
+    /**
+     * @return string
+     */
 
+    /* cette methode sert à traduire les niveaux des collaborateurs*/
+    public function translateType( ) : string
+    {
+        switch ($this->getType()){
+            case self::_TYPE_1_FRONTEND_:return 'FRONTEND';
+            case self::_TYPE_2_BACKEND_ :return 'BACKEND';
+            case self::_TYPE_3_DATABASE_:return 'DATABASE';
+            default : return 'Pas de niveau'  ;
+        }
+    }
+
+    /**
+     * @return bool
+     */
+
+    /* Permet de verifier la valeur dans -competence */
+    public function validation() : bool
+    {
+        $validator = new Validation();
+        $validator->add(
+            'competence',
+            new Validation\Validator\InclusionIn(
+                [
+                    'template' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
+                    'message' => 'Le champ :field doit avoir une valeur comprise entre 1 et 3',
+                    'domain' => [
+                        self::_TYPE_1_FRONTEND_,
+                        self::_TYPE_2_BACKEND_,
+                        self::_TYPE_3_DATABASE_,
+                    ],
+                ]
+            )
+        );
+        return $this->validate($validator);
+    }
     /**
      * Returns the value of field charge
      *
@@ -194,7 +236,7 @@ class Composant extends \Phalcon\Mvc\Model
         $this->setSchema("angy_db");
         $this->setSource("composant");
         $this->hasMany('id', 'Projet', 'id_application', ['alias' => 'Projet']);
-        $this->belongsTo('id_module', '\Webappsaler\Common\Models\Module', 'id', ['alias' => 'Module']);
+        $this->belongsTo('id_module', 'Webappsaler\Models\Module', 'id', ['alias' => 'Module']);
     }
 
     /**
